@@ -38,7 +38,7 @@ checksum = "baf1de4339761588bc0619e3cbc0120ee582ebb74b53b4efbf79117bd2da40fd"
 [[package]]
 name = "ckb-vm"
 version = "0.21.3"
-source = "git+https://github.com/xxuejie/ckb-vm?rev=c0fe210#c0fe210b2a273d6c1d4fbd404147b907ca9c2f18"
+source = "git+https://github.com/xxuejie/ckb-vm?rev=c8aff96#c8aff96693acc0c5648931ea8c62dbc479e8a116"
 dependencies = [
  "byteorder",
  "bytes",
@@ -59,7 +59,7 @@ dependencies = [
 [[package]]
 name = "ckb-vm-contrib"
 version = "0.1.0"
-source = "git+https://github.com/xxuejie/ckb-vm-contrib?rev=c94eda6#c94eda64a11503df714af6b81aa11614c18c29ea"
+source = "git+https://github.com/xxuejie/ckb-vm-contrib?rev=7d61612#7d616122a64f3fa5eb9081703568e1de981342c3"
 dependencies = [
  "ckb-vm",
  "ckb-vm-definitions",
@@ -70,7 +70,7 @@ dependencies = [
 [[package]]
 name = "ckb-vm-definitions"
 version = "0.21.3"
-source = "git+https://github.com/xxuejie/ckb-vm?rev=c0fe210#c0fe210b2a273d6c1d4fbd404147b907ca9c2f18"
+source = "git+https://github.com/xxuejie/ckb-vm?rev=c8aff96#c8aff96693acc0c5648931ea8c62dbc479e8a116"
 
 [[package]]
 name = "convert_case"
