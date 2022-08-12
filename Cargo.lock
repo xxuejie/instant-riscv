@@ -59,6 +59,7 @@ dependencies = [
 [[package]]
 name = "ckb-vm-contrib"
 version = "0.1.0"
+source = "git+https://github.com/xxuejie/ckb-vm-contrib?rev=c94eda6#c94eda64a11503df714af6b81aa11614c18c29ea"
 dependencies = [
  "ckb-vm",
  "ckb-vm-definitions",

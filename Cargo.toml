@@ -8,7 +8,7 @@ edition = "2021"
 [dependencies]
 ckb-vm = { git = "https://github.com/xxuejie/ckb-vm", rev = "c0fe210" }
 ckb-vm-definitions = { git = "https://github.com/xxuejie/ckb-vm", rev = "c0fe210" }
-ckb-vm-contrib = { path = "../ckb-vm-contrib" }
+ckb-vm-contrib = { git = "https://github.com/xxuejie/ckb-vm-contrib", rev = "c94eda6" }
 
 [build-dependencies]
 cc = "1.0.73"
