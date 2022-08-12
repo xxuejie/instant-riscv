@@ -1,0 +1,20 @@
+{
+  "name": "instant-riscv-web",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "build": "cp ../target/wasm32-wasi/release/instant-riscv.wasm www/",
+    "start": "node serve.js",
+    "dist": "esbuild index.js worker.js --bundle --minify --outdir=www"
+  },
+  "author": "Xuejie Xiao",
+  "license": "MIT",
+  "devDependencies": {
+    "esbuild": "^0.15.1"
+  },
+  "dependencies": {
+    "xterm-pty-wasi-polyfill": "^0.1.1"
+  }
+}

@@ -1,0 +1,6 @@
+[submodule "deps/linenoise"]
+	path = deps/linenoise
+	url = https://github.com/xxuejie/linenoise
+[submodule "deps/xterm-pty-wasi-polyfill"]
+	path = deps/xterm-pty-wasi-polyfill
+	url = https://github.com/xxuejie/xterm-pty-wasi-polyfill

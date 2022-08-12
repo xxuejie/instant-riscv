@@ -1,0 +1,5 @@
+/target
+node_modules/
+web/www/*.wasm
+web/www/index.js
+web/www/worker.js
