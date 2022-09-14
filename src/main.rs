@@ -1,11 +1,18 @@
 mod ffi;
 
 use crate::ffi as linenoise;
-use ckb_vm::{
-    instructions::execute_instruction, machine::VERSION1, DefaultCoreMachine,
-    DefaultMachineBuilder, Machine, Memory, SparseMemory, WXorXMemory, ISA_B, ISA_IMC, ISA_V,
+use ckb_vm_contrib::{
+    assembler::parse,
+    ckb_vm::{
+        instructions::{
+            execute_instruction, generate_handle_function_list, generate_vcheck_function_list,
+            HandleFunction,
+        },
+        machine::VERSION1,
+        DefaultCoreMachine, DefaultMachineBuilder, Machine, Memory, SparseMemory, WXorXMemory,
+        ISA_B, ISA_IMC, ISA_V,
+    },
 };
-use ckb_vm_contrib::assembler::parse;
 use std::str::FromStr;
 
 fn main() {
@@ -21,19 +28,31 @@ fn main() {
         u64::max_value(),
     );
     let mut machine = DefaultMachineBuilder::new(core_machine).build();
+    let vcheck_function_list = generate_vcheck_function_list();
+    let handle_function_list = generate_handle_function_list();
 
     loop {
         let val = linenoise::input(">> ");
         match val {
             Some(line) => {
-                run(&mut machine, &line);
+                run(
+                    &mut machine,
+                    &line,
+                    &vcheck_function_list,
+                    &handle_function_list,
+                );
             }
             None => break,
         }
     }
 }
 
-fn run<Mac: Machine + core::fmt::Display>(m: &mut Mac, line: &str) {
+fn run<Mac: Machine + core::fmt::Display>(
+    m: &mut Mac,
+    line: &str,
+    vcheck_functions: &[HandleFunction<Mac>],
+    handle_functions: &[HandleFunction<Mac>],
+) {
     if line.starts_with(":") {
         let commands: Vec<&str> = line[1..].split(" ").collect();
         let mut processed = false;
@@ -66,7 +85,7 @@ fn run<Mac: Machine + core::fmt::Display>(m: &mut Mac, line: &str) {
                     parse_number(commands[2]),
                     parse_number(commands[3]),
                 ) {
-                    let data = m.element_ref(reg as usize, sew, n as usize);
+                    let data = m.coprocessor_v().element_ref(reg as usize, sew, n as usize);
                     print_binary(0, &data, 4);
                     processed = true;
                 }
@@ -80,7 +99,12 @@ fn run<Mac: Machine + core::fmt::Display>(m: &mut Mac, line: &str) {
         match parse::<u64>(line) {
             Ok(insts) => {
                 for inst in insts {
-                    if let Err(e) = execute_instruction(inst.clone().into(), m) {
+                    if let Err(e) = execute_instruction(
+                        m,
+                        vcheck_functions,
+                        handle_functions,
+                        inst.clone().into(),
+                    ) {
                         println!("Error executing instruction: {:?}: {}", inst, e);
                     }
                 }
