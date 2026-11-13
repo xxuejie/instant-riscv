@@ -6,7 +6,12 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-ckb-vm-contrib = { git = "https://github.com/xxuejie/ckb-vm-contrib", rev = "df81524" }
+ckb-vm-contrib = "=0.2.0"
+
+# The ckb-vm-contrib git commit this used to pin no longer exists upstream; keep the exact ckb-vm revision it built against.
+[patch.crates-io]
+ckb-vm = { git = "https://github.com/nervosnetwork/ckb-vm", rev = "7dc3efb" }
+ckb-vm-definitions = { git = "https://github.com/nervosnetwork/ckb-vm", rev = "7dc3efb" }
 
 [build-dependencies]
 cc = "1.0.73"
