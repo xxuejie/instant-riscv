@@ -72,7 +72,8 @@ dependencies = [
 [[package]]
 name = "ckb-vm-contrib"
 version = "0.2.0"
-source = "git+https://github.com/xxuejie/ckb-vm-contrib?rev=df81524#df81524dd4dd00a6c4f5dbc423e4bf4d226d838e"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "9b3239bbf2b7d6052e9b17111c8d02ac400ae7aea9eb944c75cd67d16a2f00db"
 dependencies = [
  "ckb-vm",
  "ckb-vm-definitions",

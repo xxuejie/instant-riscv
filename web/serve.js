@@ -3,6 +3,7 @@ const http = require('http');
 
 // Start esbuild's server on a random local port
 esbuild.serve({
+  host: "127.0.0.1",
   servedir: "www",
 }, {
   bundle: true,
